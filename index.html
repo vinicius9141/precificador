@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Preço</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Preço das Camisas Estampadas de Nossa Senhora Aparecida</h2>
+        <label for="custo-producao">Custo de produção por camisa:</label>
+        <input type="number" id="custo-producao" step="0.01"><br>
+        <label for="margem-lucro">Margem de lucro desejada (%):</label>
+        <input type="number" id="margem-lucro" step="0.01"><br>
+        <label for="taxas">Taxas (em porcentagem do preço final):</label>
+        <input type="number" id="taxas" step="0.01"><br>
+        <button onclick="calcularPreco()">Calcular Preço</button><br>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularPreco() {
+            var custoProducao = parseFloat(document.getElementById('custo-producao').value);
+            var margemLucro = parseFloat(document.getElementById('margem-lucro').value);
+            var taxas = parseFloat(document.getElementById('taxas').value);
+
+            if (isNaN(custoProducao) || isNaN(margemLucro) || isNaN(taxas)) {
+                alert("Por favor, preencha todos os campos com valores numéricos.");
+                return;
+            }
+
+            var precoFinal = custoProducao * (1 + (margemLucro / 100)) / (1 - (taxas / 100));
+
+            document.getElementById('resultado').innerHTML = "Preço de venda sugerido: R$" + precoFinal.toFixed(2);
+        }
+    </script>
+</body>
+</html>
